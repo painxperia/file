@@ -1,5 +1,8 @@
 package com.zpain.file.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.zpain.file.BusinessException;
+import com.zpain.file.User2;
 import com.zpain.file.User3;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -45,12 +48,15 @@ public class FileController {
         System.out.println(Thread.currentThread().getName() + "主线程结束");
     }
 
-    @PostMapping("/a")
-    public void a(@RequestBody User3 user3) {
-        log.info("list:{}", user3.getId());
+    @GetMapping("/a")
+    public void a(User2 user2) {
+
+        log.info("list:{}", JSON.toJSONString(user2));
     }
 
-    public static void main(String[] args) {
+    @GetMapping("/b")
+    public void b(User2 user2) {
 
+        throw new BusinessException("嗡嗡嗡嗡嗡嗡");
     }
 }
